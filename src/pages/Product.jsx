@@ -12,7 +12,7 @@ const Product = () => {
               key={index}
               className="  bg-white shadow-gray-200 shadow-lg overflow-hidden rounded-xl  duration-300 hover:shadow-2xl hover:-translate-y-2 w-80 "
               onClick={() => {
-                navigate("/productDetail");
+                navigate(`/products/${item.id}`);
               }}
             >
               <img src={item.productImg} alt="Img" className="h-60 w-full " />
@@ -29,6 +29,10 @@ const Product = () => {
                 </div>
                 <p className="font-semibold ">Qty: {item.qty} </p>
                 <p>{item.description} </p>
+
+                <button className="text-blue-600  text-center w-full">
+                  View more...
+                </button>
               </div>
             </div>
           );
