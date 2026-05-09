@@ -1,5 +1,5 @@
 import React from "react";
-import { products } from "../data/product";
+import { products } from "../data/products";
 import { useNavigate } from "react-router-dom";
 const Product = () => {
   const navigate = useNavigate();
@@ -27,8 +27,8 @@ const Product = () => {
                     Rs.{item.price}
                   </h2>
                 </div>
-                <p className="font-semibold ">Qty: {item.qty} </p>
-                <p>{item.description} </p>
+                {/* <p className="font-semibold ">Qty: {item.qty} </p>
+                <p>{item.description} </p> */}
 
                 <button className="text-blue-600  text-center w-full">
                   View more...
