@@ -10,7 +10,7 @@ const Product = () => {
           return (
             <div
               key={index}
-              className="  bg-white shadow-gray-200 shadow-lg overflow-hidden rounded-xl  duration-300 hover:shadow-2xl hover:-translate-y-2 w-80 "
+              className="  bg-white shadow-gray-200 shadow-lg overflow-hidden rounded-xl  duration-300 hover:shadow-2xl hover:-translate-y-2 w-80 cursor-pointer "
               onClick={() => {
                 navigate(`/products/${item.id}`);
               }}
