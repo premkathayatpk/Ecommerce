@@ -1,44 +1,104 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import icone from "../assets/icone.png";
+import { TbLogin2, TbLogout2 } from "react-icons/tb";
+import { FaUserCircle } from "react-icons/fa";
+import { BiRegistered } from "react-icons/bi";
+import { TbClipboardList } from "react-icons/tb";
 
 const Navbar = () => {
+  const [user, setUser] = useState(null);
+  useEffect(() => {
+    const savedUser = localStorage.getItem("user");
+    if (savedUser) {
+      setUser(JSON.parse(savedUser));
+    }
+  }, []);
+
   const linkClass = ({ isActive }) =>
-    `transition-colors duration-200 hover:text-blue-600 ${isActive ? "text-blue-700 font-semibold" : "text-gray-700"}`;
+    `flex items-center gap-1 transition-all duration-300 px-3 py-1 rounded-md ${
+      isActive
+        ? "text-blue-600 bg-blue-50 font-bold"
+        : "text-gray-600 hover:text-blue-600 hover:bg-gray-50"
+    }`;
+
   return (
-    <>
-      <header className=" flex justify-between py-2 px-5 items-center shadow-gary-200 shadow-xl">
-        <div className="flex items-center">
-          <img src={icone} alt="logo" className="h-10 w-auto" />
+    <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md flex justify-between py-3 px-8 items-center shadow-sm border-b border-gray-100">
+      <div className="flex items-center">
+        <img
+          src={icone}
+          alt="logo"
+          className="h-15 w-auto hover:scale-105 transition-transform cursor-pointer"
+        />
+      </div>
+
+      <nav className="hidden md:flex items-center gap-x-2 text-base font-medium">
+        <NavLink to="/" className={linkClass}>
+          Home
+        </NavLink>
+        <NavLink to="products" className={linkClass}>
+          Products
+        </NavLink>
+        <NavLink to="about" className={linkClass}>
+          About
+        </NavLink>
+        <NavLink to="contact" className={linkClass}>
+          Contact
+        </NavLink>
+        <NavLink to="cart" className={linkClass}>
+          Cart
+        </NavLink>
+      </nav>
+
+      <div className="group relative py-2">
+        <div className="flex items-center gap-2 cursor-pointer p-1 rounded-full hover:bg-gray-100 transition-colors">
+          {user ? (
+            <div>
+              <img src={user?.profileImg} alt="profile" className="h-10" />
+            </div>
+          ) : (
+            <FaUserCircle size={35} className="text-gray-700" />
+          )}
+          <span className="text-sm font-medium text-gray-600 hidden sm:block">
+            {user ? <p>{user.name}</p> : <p>Account</p>}
+          </span>
         </div>
 
-        <nav className="flex justify-around gap-x-5 text-xl font-medium ">
-          <NavLink to="/" className={linkClass}>
-            Home
-          </NavLink>
-          <NavLink to="products" className={linkClass}>
-            Product
-          </NavLink>
-          <NavLink to="about" className={linkClass}>
-            About us
-          </NavLink>
-          <NavLink to="contact" className={linkClass}>
-            Contact us
-          </NavLink>
-          <NavLink to="cart" className={linkClass}>
-            Cart
-          </NavLink>
-        </nav>
-        <div>
-          <NavLink to="login" className={linkClass}>
-            Login
-          </NavLink>
-          <NavLink to="register" className={linkClass}>
-            Register
-          </NavLink>
+        <div className="absolute right-0 top-full pt-2 w-48 opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-200">
+          <div className="bg-white border border-gray-100 shadow-xl rounded-xl overflow-hidden py-2 px-1">
+            {!user ? (
+              <div>
+                {" "}
+                <NavLink to="login" className={linkClass}>
+                  <TbLogin2 className="text-lg" />
+                  <span>Login</span>
+                </NavLink>
+                <NavLink to="register" className={linkClass}>
+                  <BiRegistered className="text-lg" />
+
+                  <span>Register</span>
+                </NavLink>
+              </div>
+            ) : (
+              <div>
+                <NavLink to="order" className={linkClass}>
+                  <TbClipboardList className="text-lg" />
+                  <span>Order</span>
+                </NavLink>
+                <NavLink to="profile" className={linkClass}>
+                  <FaUserCircle className="text-lg" />
+                  <span>Profile</span>
+                </NavLink>
+                <NavLink to="logout" className={linkClass}>
+                  <TbLogout2 className="text-lg" />
+                  <span>Logout</span>
+                </NavLink>
+              </div>
+            )}
+          </div>
         </div>
-      </header>
-    </>
+      </div>
+    </header>
   );
 };
 

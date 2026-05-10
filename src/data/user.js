@@ -1,3 +1,4 @@
+import icone from "../assets/icone.png";
 export const user = [
   {
     id: 1,
@@ -6,6 +7,17 @@ export const user = [
     password: "prem1234",
     phone: 9827633522,
     address: "Kathmandu",
-    role: "user",
+    role: "User",
+    profileImg: icone,
+  },
+  {
+    id: 1,
+    name: "Admin",
+    email: "admin@gmail.com",
+    password: "admin1234",
+    phone: 9827633522,
+    address: "Kathmandu",
+    role: "Admin",
+    profileImg: icone,
   },
 ];

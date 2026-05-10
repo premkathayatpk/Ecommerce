@@ -3,8 +3,10 @@ import { user } from "../data/user.js";
 import { IoIosLogIn } from "react-icons/io";
 import { CiMail } from "react-icons/ci";
 import { CiLock } from "react-icons/ci";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [initialData] = useState({
     email: "",
     password: "",
@@ -29,9 +31,11 @@ const Login = () => {
     );
 
     if (matchUser) {
+      localStorage.setItem("user", JSON.stringify(matchUser));
       alert("Login successful!");
-
+      navigate("/");
       setFormData(initialData);
+      window.location.reload();
     } else {
       alert("Invalid Email or Password");
     }

@@ -9,6 +9,9 @@ import ProductDetail from "../pages/ProductDetail";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
 import MainLayout from "../layouts/MainLayout";
+import Profile from "../pages/Profile";
+import Order from "../pages/Order";
+import Logout from "../pages/Logout";
 
 const AppRouter = () => {
   const router = createBrowserRouter([
@@ -41,8 +44,20 @@ const AppRouter = () => {
           element: <Login />,
         },
         {
+          path: "logout",
+          element: <Logout />,
+        },
+        {
           path: "register",
           element: <Register />,
+        },
+        {
+          path: "profile",
+          element: <Profile />,
+        },
+        {
+          path: "order",
+          element: <Order />,
         },
         {
           path: "products/:id",
