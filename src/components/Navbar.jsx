@@ -5,8 +5,13 @@ import { TbLogin2, TbLogout2 } from "react-icons/tb";
 import { FaUserCircle } from "react-icons/fa";
 import { BiRegistered } from "react-icons/bi";
 import { TbClipboardList } from "react-icons/tb";
+import { MdOutlineShoppingCart } from "react-icons/md";
+
+import { useCart } from "../context/CartProvider";
 
 const Navbar = () => {
+  const { cart } = useCart();
+
   const [user, setUser] = useState(null);
   useEffect(() => {
     const savedUser = localStorage.getItem("user");
@@ -32,7 +37,7 @@ const Navbar = () => {
         />
       </div>
 
-      <nav className="hidden md:flex items-center gap-x-2 text-base font-medium">
+      <nav className="flex  items-center gap-x-2 text-base font-medium">
         <NavLink to="/" className={linkClass}>
           Home
         </NavLink>
@@ -45,10 +50,13 @@ const Navbar = () => {
         <NavLink to="contact" className={linkClass}>
           Contact
         </NavLink>
-        <NavLink to="cart" className={linkClass}>
-          Cart
-        </NavLink>
       </nav>
+      <NavLink to="cart" className={linkClass}>
+        <MdOutlineShoppingCart size={28} />
+        <sup className="text-white bg-orange-500  rounded-full py-2 px-1 ">
+          {cart.length}
+        </sup>
+      </NavLink>
 
       <div className="group relative py-2">
         <div className="flex items-center gap-2 cursor-pointer p-1 rounded-full hover:bg-gray-100 transition-colors">
