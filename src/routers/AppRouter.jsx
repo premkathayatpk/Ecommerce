@@ -12,6 +12,7 @@ import MainLayout from "../layouts/MainLayout";
 import Profile from "../pages/Profile";
 import Order from "../pages/Order";
 import Logout from "../pages/Logout";
+import Payment from "../pages/Payment";
 
 const AppRouter = () => {
   const router = createBrowserRouter([
@@ -62,6 +63,10 @@ const AppRouter = () => {
         {
           path: "products/:id",
           element: <ProductDetail />,
+        },
+        {
+          path: "payment",
+          element: <Payment />,
         },
       ],
     },

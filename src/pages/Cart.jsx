@@ -125,7 +125,8 @@ const Cart = () => {
                   Rs.{subtotal + shipping}
                 </span>
               </p>
-              <button className="bg-blue-700 text-white py-2  w-full rounded-xl text-xl font-bold mb-5 cursor-pointer hover:bg-blue-500  ">
+              <button className="bg-blue-700 text-white py-2  w-full rounded-xl text-xl font-bold mb-5 cursor-pointer hover:bg-blue-500  
+              ">
                 Process to Checkout
               </button>
             </div>
